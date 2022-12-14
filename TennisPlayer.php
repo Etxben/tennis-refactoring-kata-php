@@ -6,6 +6,9 @@ class TennisPlayer{
     private const FIFTEEN = "Fifteen";
     private const THIRTY = "Thirty";
     private const FORTY = "Forty";
+    private const ZERO_POINTS = 0;
+    private const ONE_POINT = 1;
+    private const TWO_POINTS = 2;
     private const FOUR_POINTS = 4;
 
     private int $score;
@@ -29,35 +32,50 @@ class TennisPlayer{
 
     public function getTextScore(): string
     {
-        if ($this->score == 0)
+        if ($this->isLove())
         {
             return self::LOVE;
         }
 
-        if ($this->score == 1)
+        if ($this->isFifteen())
         {
             return self::FIFTEEN;
         }
 
-        if ($this->score == 2) {
+        if ($this->isThirty()) {
             return self::THIRTY;
         }
         return self::FORTY;
     }
 
+    private function isLove(): bool
+    {
+        return $this->score == self::ZERO_POINTS;
+    }
+
+    private function isFifteen(): bool
+    {
+        return $this->score == self::ONE_POINT;
+    }
+
+    private function isThirty(): bool
+    {
+        return $this->score == self::TWO_POINTS;
+    }
+
     public function AreTied(TennisPlayer $player): bool
     {
-        return $this->getDifferenceBetweenScores($player) == 0;
+        return $this->getDifferenceBetweenScores($player) == self::ZERO_POINTS;
     }
 
     public function hasAdvantage(TennisPlayer $player): bool
     {
-        return $this->getDifferenceBetweenScores($player) == 1;
+        return $this->getDifferenceBetweenScores($player) == self::ONE_POINT;
     }
 
-    public function WinTheSet(TennisPlayer $player) : bool
+    public function winTheSet(TennisPlayer $player) : bool
     {
-        return $this->getDifferenceBetweenScores($player) >= 2;
+        return $this->getDifferenceBetweenScores($player) >= self::TWO_POINTS;
     }
 
     private function getDifferenceBetweenScores(TennisPlayer $player): int
@@ -65,12 +83,12 @@ class TennisPlayer{
         return $this->score - $player->getScore();
     }
 
-    public function IsScoreMoreThanForty(): bool
+    public function isScoreMoreThanForty(): bool
     {
         return $this->score >= self::FOUR_POINTS;
     }
 
-    public function IsScoreForty(): bool
+    public function isScoreForty(): bool
     {
         return strcmp($this->getTextScore(), self::FORTY) == 0;
     }

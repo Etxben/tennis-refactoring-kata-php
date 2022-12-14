@@ -29,7 +29,7 @@ class TennisGame1 implements TennisGame
     {
         if ($this->playerOne->AreTied($this->playerTwo))
         {
-            if ($this->playerOne->IsScoreForty())
+            if ($this->playerOne->isScoreForty())
             {
                 return self::DEUCE;
             }
@@ -47,12 +47,12 @@ class TennisGame1 implements TennisGame
                 return self::ADVANTAGE . $this->playerTwo->name;
             }
 
-            if ($this->playerOne->WinTheSet($this->playerTwo))
+            if ($this->playerOne->winTheSet($this->playerTwo))
             {
                 return self::WIN_FOR . $this->playerOne->name;
             }
 
-            if ($this->playerTwo->WinTheSet($this->playerOne))
+            if ($this->playerTwo->winTheSet($this->playerOne))
             {
                 return self::WIN_FOR . $this->playerTwo->name;
             }
@@ -65,7 +65,7 @@ class TennisGame1 implements TennisGame
 
     private function hasAnyPlayerAScoreMoreThanForty(): bool
     {
-        return $this->playerOne->IsScoreMoreThanForty() ||
-            $this->playerTwo->IsScoreMoreThanForty();
+        return $this->playerOne->isScoreMoreThanForty() ||
+            $this->playerTwo->isScoreMoreThanForty();
     }
 }
