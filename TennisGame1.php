@@ -41,7 +41,7 @@ class TennisGame1 implements TennisGame
             return $score . self::ALL;
         }
 
-        if ($this->player1Score >= 4 || $this->player2Score >= 4) {
+        if ($this->hasAPlayerAScoreMoreThan3()) {
             $minusResult = $this->player1Score - $this->player2Score;
             if ($minusResult == 1) {
                 $score = "Advantage player1";
@@ -81,6 +81,11 @@ class TennisGame1 implements TennisGame
     private function areThePlayersTied(): bool
     {
         return $this->player1Score == $this->player2Score;
+    }
+
+    private function hasAPlayerAScoreMoreThan3(): bool
+    {
+        return $this->player1Score >= 4 || $this->player2Score >= 4;
     }
 }
 
