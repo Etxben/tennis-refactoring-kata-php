@@ -1,11 +1,12 @@
 <?php
 
-class TennisPlayer{
+class TennisPlayer
+{
 
-    private const LOVE = "Love";
-    private const FIFTEEN = "Fifteen";
-    private const THIRTY = "Thirty";
-    private const FORTY = "Forty";
+    private const SCORE_LOVE = "Love";
+    private const SCORE_FIFTEEN = "Fifteen";
+    private const SCORE_THIRTY = "Thirty";
+    private const SCORE_FORTY = "Forty";
     private const ZERO_POINTS = 0;
     private const ONE_POINT = 1;
     private const TWO_POINTS = 2;
@@ -34,18 +35,18 @@ class TennisPlayer{
     {
         if ($this->isLove())
         {
-            return self::LOVE;
+            return self::SCORE_LOVE;
         }
 
         if ($this->isFifteen())
         {
-            return self::FIFTEEN;
+            return self::SCORE_FIFTEEN;
         }
 
         if ($this->isThirty()) {
-            return self::THIRTY;
+            return self::SCORE_THIRTY;
         }
-        return self::FORTY;
+        return self::SCORE_FORTY;
     }
 
     private function isLove(): bool
@@ -90,6 +91,6 @@ class TennisPlayer{
 
     public function isScoreForty(): bool
     {
-        return strcmp($this->getTextScore(), self::FORTY) == 0;
+        return strcmp($this->getTextScore(), self::SCORE_FORTY) == 0;
     }
 }

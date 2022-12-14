@@ -2,10 +2,11 @@
 
 class TennisGame1 implements TennisGame
 {
-    private const ALL = "-All";
+    private const ALL = self::SEPARATOR . "All";
     private const DEUCE = "Deuce";
     private const WIN_FOR = "Win for ";
     private const ADVANTAGE = "Advantage ";
+    const SEPARATOR = '-';
 
     private TennisPlayer $playerOne;
     private TennisPlayer $playerTwo;
@@ -33,7 +34,8 @@ class TennisGame1 implements TennisGame
             {
                 return self::DEUCE;
             }
-            return $this->playerOne->getTextScore() . self::ALL;
+            return $this->playerOne->getTextScore() .
+                self::ALL;
         }
 
         if ($this->hasAnyPlayerAScoreMoreThanForty()) {
@@ -59,7 +61,8 @@ class TennisGame1 implements TennisGame
         }
 
         return
-            $this->playerOne->getTextScore() . '-' .
+            $this->playerOne->getTextScore() .
+            self::SEPARATOR .
             $this->playerTwo->getTextScore();
     }
 
