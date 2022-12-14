@@ -2,10 +2,10 @@
 
 class TennisGame1 implements TennisGame
 {
-    private $m_score1 = 0;
-    private $m_score2 = 0;
-    private $player1Name = '';
-    private $player2Name = '';
+    private int $m_score1 = 0;
+    private int $m_score2 = 0;
+    private string $player1Name = '';
+    private string $player2Name = '';
 
     public function __construct($player1Name, $player2Name)
     {
@@ -13,7 +13,7 @@ class TennisGame1 implements TennisGame
         $this->player2Name = $player2Name;
     }
 
-    public function wonPoint($playerName)
+    public function wonPoint($playerName) : void
     {
         if ('player1' == $playerName) {
             $this->m_score1++;
@@ -22,7 +22,7 @@ class TennisGame1 implements TennisGame
         }
     }
 
-    public function getScore()
+    public function getScore() : string
     {
         $score = "";
         if ($this->m_score1 == $this->m_score2) {
