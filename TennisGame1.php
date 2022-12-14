@@ -19,9 +19,12 @@ class TennisGame1 implements TennisGame
 
     public function wonPoint($playerName) : void
     {
-        if ($this->playerOne->name == $playerName) {
+        if ($this->playerOne->name == $playerName)
+        {
             $this->playerOne->addOneToScore();
-        } else {
+        }
+        else
+        {
             $this->playerTwo->addOneToScore();
         }
     }
@@ -34,11 +37,12 @@ class TennisGame1 implements TennisGame
             {
                 return self::DEUCE;
             }
-            return $this->playerOne->getTextScore() .
+            return $this->playerOne->getScoreAsString() .
                 self::ALL;
         }
 
-        if ($this->hasAnyPlayerAScoreMoreThanForty()) {
+        if ($this->hasAnyPlayerAScoreMoreThanForty())
+        {
 
             if ($this->playerOne->hasAdvantage($this->playerTwo))
             {
@@ -61,14 +65,15 @@ class TennisGame1 implements TennisGame
         }
 
         return
-            $this->playerOne->getTextScore() .
+            $this->playerOne->getScoreAsString() .
             self::SEPARATOR .
-            $this->playerTwo->getTextScore();
+            $this->playerTwo->getScoreAsString();
     }
 
     private function hasAnyPlayerAScoreMoreThanForty(): bool
     {
-        return $this->playerOne->isScoreMoreThanForty() ||
+        return
+            $this->playerOne->isScoreMoreThanForty() ||
             $this->playerTwo->isScoreMoreThanForty();
     }
 }

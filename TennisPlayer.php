@@ -31,7 +31,7 @@ class TennisPlayer
         $this->score++;
     }
 
-    public function getTextScore(): string
+    public function getScoreAsString(): string
     {
         if ($this->isLove())
         {
@@ -43,7 +43,8 @@ class TennisPlayer
             return self::SCORE_FIFTEEN;
         }
 
-        if ($this->isThirty()) {
+        if ($this->isThirty())
+        {
             return self::SCORE_THIRTY;
         }
         return self::SCORE_FORTY;
@@ -91,6 +92,6 @@ class TennisPlayer
 
     public function isScoreForty(): bool
     {
-        return strcmp($this->getTextScore(), self::SCORE_FORTY) == 0;
+        return strcmp($this->getScoreAsString(), self::SCORE_FORTY) == 0;
     }
 }
