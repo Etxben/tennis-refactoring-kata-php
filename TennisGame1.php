@@ -2,6 +2,13 @@
 
 class TennisGame1 implements TennisGame
 {
+    private const LOVE = "Love";
+    private const FIFTEEN = "Fifteen";
+    private const THIRTY = "Thirty";
+    private const FORTY = "Forty";
+    private const ALL = "-All";
+    private const DEUCE = "Deuce";
+
     private int $player1Score = 0;
     private int $player2Score = 0;
     private string $player1Name = '';
@@ -25,21 +32,17 @@ class TennisGame1 implements TennisGame
     public function getScore() : string
     {
         $score = "";
-        if ($this->player1Score == $this->player2Score) {
-            switch ($this->player1Score) {
-                case 0:
-                    $score = "Love-All";
-                    break;
-                case 1:
-                    $score = "Fifteen-All";
-                    break;
-                case 2:
-                    $score = "Thirty-All";
-                    break;
-                default:
-                    $score = "Deuce";
-                    break;
+        if ($this->areThePlayersTied()) {
+            $score = $this->getTextOfScore($this->player1Score);
+            if ($score == self::FORTY)
+            {
+                $score = self::DEUCE;
             }
+            else
+            {
+                $score .= self::ALL;
+            }
+
         } elseif ($this->player1Score >= 4 || $this->player2Score >= 4) {
             $minusResult = $this->player1Score - $this->player2Score;
             if ($minusResult == 1) {
@@ -52,30 +55,37 @@ class TennisGame1 implements TennisGame
                 $score = "Win for player2";
             }
         } else {
-            for ($i = 1; $i < 3; $i++) {
-                if ($i == 1) {
-                    $tempScore = $this->player1Score;
-                } else {
-                    $score .= "-";
-                    $tempScore = $this->player2Score;
-                }
-                switch ($tempScore) {
-                    case 0:
-                        $score .= "Love";
-                        break;
-                    case 1:
-                        $score .= "Fifteen";
-                        break;
-                    case 2:
-                        $score .= "Thirty";
-                        break;
-                    case 3:
-                        $score .= "Forty";
-                        break;
-                }
-            }
+            $score =
+                $this->getTextOfScore($this->player1Score) . '-' .
+                $this->getTextOfScore($this->player2Score);
         }
         return $score;
+    }
+
+    private function getTextOfScore(int $tempScore): string
+    {
+        if ($tempScore == 0)
+        {
+            return self::LOVE;
+        }
+
+        if ($tempScore == 1)
+        {
+            return self::FIFTEEN;
+        }
+
+        if ($tempScore == 2) {
+            return self::THIRTY;
+        }
+        return self::FORTY;
+    }
+
+    /**
+     * @return bool
+     */
+    public function areThePlayersTied(): bool
+    {
+        return $this->player1Score == $this->player2Score;
     }
 }
 
