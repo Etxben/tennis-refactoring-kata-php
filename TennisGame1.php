@@ -36,14 +36,12 @@ class TennisGame1 implements TennisGame
             $score = $this->getTextOfScore($this->player1Score);
             if ($score == self::FORTY)
             {
-                $score = self::DEUCE;
+                return self::DEUCE;
             }
-            else
-            {
-                $score .= self::ALL;
-            }
+            return $score . self::ALL;
+        }
 
-        } elseif ($this->player1Score >= 4 || $this->player2Score >= 4) {
+        if ($this->player1Score >= 4 || $this->player2Score >= 4) {
             $minusResult = $this->player1Score - $this->player2Score;
             if ($minusResult == 1) {
                 $score = "Advantage player1";
@@ -54,12 +52,12 @@ class TennisGame1 implements TennisGame
             } else {
                 $score = "Win for player2";
             }
-        } else {
-            $score =
-                $this->getTextOfScore($this->player1Score) . '-' .
-                $this->getTextOfScore($this->player2Score);
+            return $score;
         }
-        return $score;
+
+        return
+            $this->getTextOfScore($this->player1Score) . '-' .
+            $this->getTextOfScore($this->player2Score);
     }
 
     private function getTextOfScore(int $tempScore): string
@@ -80,10 +78,7 @@ class TennisGame1 implements TennisGame
         return self::FORTY;
     }
 
-    /**
-     * @return bool
-     */
-    public function areThePlayersTied(): bool
+    private function areThePlayersTied(): bool
     {
         return $this->player1Score == $this->player2Score;
     }
