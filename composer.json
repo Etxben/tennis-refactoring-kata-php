@@ -7,8 +7,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Feature\\": "src",
-            "Test\\": "tests"
+            "": [
+                "src",
+                "tests"
+            ]
         }
     },
     "require": {
