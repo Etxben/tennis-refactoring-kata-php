@@ -1,5 +1,7 @@
 <?php
 
+namespace Feature;
+
 class TennisGame1 implements TennisGame
 {
     private $m_score1 = 0;
