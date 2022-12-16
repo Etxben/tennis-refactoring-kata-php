@@ -4,13 +4,13 @@ namespace Feature;
 
 class TennisGame2 implements TennisGame
 {
-    private $P1point = 0;
-    private $P2point = 0;
+    private int $P1point = 0;
+    private int $P2point = 0;
 
-    private $P1res = "";
-    private $P2res = "";
-    private $player1Name = "";
-    private $player2Name = "";
+    private string $P2res = "";
+    private string $P1res = "";
+    private string $player1Name = "";
+    private string $player2Name = "";
 
     public function __construct($player1Name, $player2Name)
     {
@@ -18,7 +18,7 @@ class TennisGame2 implements TennisGame
         $this->player2Name = $player2Name;
     }
 
-    public function getScore()
+    public function getScore(): string
     {
         $score = "";
         if ($this->P1point == $this->P2point && $this->P1point < 4) {
@@ -142,7 +142,7 @@ class TennisGame2 implements TennisGame
         $this->P2point++;
     }
 
-    public function wonPoint($player)
+    public function wonPoint($player): void
     {
         if ($player == "player1") {
             $this->P1Score();

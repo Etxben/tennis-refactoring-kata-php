@@ -8,10 +8,10 @@ interface TennisGame
      * @param  $playerName
      * @return void
      */
-    public function wonPoint($playerName);
+    public function wonPoint($playerName): void;
 
     /**
      * @return string
      */
-    public function getScore();
+    public function getScore(): string;
 }
