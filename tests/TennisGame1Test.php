@@ -1,8 +1,6 @@
 <?php
 
-namespace Test;
-
-use Feature\TennisGame1;
+use TennisGame1;
 
 /**
  * TennisGame1 test case.

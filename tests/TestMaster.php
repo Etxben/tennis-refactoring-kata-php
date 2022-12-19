@@ -1,7 +1,5 @@
 <?php
 
-namespace Test;
-
 use PHPUnit\Framework\TestCase;
 
 abstract class TestMaster extends TestCase
